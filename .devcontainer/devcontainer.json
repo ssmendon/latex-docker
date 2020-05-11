@@ -1,0 +1,32 @@
+// For format details, see https://aka.ms/vscode-remote/devcontainer.json or this file's README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.117.0/containers/docker-existing-dockerfile
+{
+	"name": "Latex Dockerfile",
+
+	// Sets the run context to one level up instead of the .devcontainer folder.
+	"context": "..",
+
+	// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
+	"dockerFile": "Dockerfile",
+
+	// Set *default* container specific settings.json values on container create.
+	"settings": { 
+		"terminal.integrated.shell.linux": "/bin/bash"
+	},
+
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"James-Yu.latex-workshop",
+		"tecosaur.latex-utilities"
+	],
+
+	// See https://code.visualstudio.com/docs/remote/containers-advanced#_improving-container-disk-performance.
+	// "workspaceMount": "source=${localWorkspaceFolder}/src,target=${containerWorkspaceFolder}/src,type=bind",
+	// "mounts": [
+	// 	"source=default-latex_build,target=${containerWorkspaceFolder}/build,type=volume"
+	// ],
+	// "postCreateCommand": "sudo chown tex build",
+
+	// Connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "tex"
+}
