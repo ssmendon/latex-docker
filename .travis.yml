@@ -11,6 +11,8 @@ deploy:
   file_glob: true
   file: build/*.pdf
   skip_cleanup: true
+  on:
+    tags: true
 git:
     depth: false
     quiet: true
