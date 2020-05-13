@@ -1,0 +1,16 @@
+language: generic
+services: docker
+script:
+- docker pull smend/latex-dev
+- docker run --user root --mount src=$TRAVIS_BUILD_DIR/,target=/repo,type=bind smend/latex-dev
+  latexmk -pdf -output-directory=/repo/build /repo/src/main.tex
+deploy:
+  provider: releases
+  api_key:
+    secure: IF80xclChxRc5Iz9l4RGS/3sYeDnCDPnL817pKLV4wJ5dWYGGuVbNBtZ54IDy+COUoh7oj0rIaNlRzfaL780qul0Yltqs3fxkPoqMf65ak/uRTErqC7K19aj12RwANJbYunW2fLlRGgrmelyfQx1NLHuxD9c8xoI1oKmoeUX7fvbjW2TARLq3eIzLphbA2icVorVWA4tMiOX4cUpmabEuZPlw9DS7eyLC4OxrOh5bolEyGxfIT+CkdSvYDnsj6GbePHQfnIhho0yDPSFaShXFMeVeEBX337Aih5L4na+6VO7qDm9cVMPzsbMF6TsAgp32uaPOa4DNJdF9T6VWW7O4BtvMENb7ByeJOCrRTcZUNx0YA1AdOfTgP8Cdwd3BWozy0W9HTXsF2LmR9KDgp+apG+JlxS4vbVGil9qmck3dczuYKcRrLmfa7VoeRYl0w4U0inH2pBK0HXi4ApfoevhxfLQSe+qwmBfe1kIDyTK4LlfmbWbRh+vai360SuwGIn+kMqbhn7l3BxInS2G8UR3cen6looy/5SrFdfC5yDXQPg4T9YZzlXajc5lGKSuOv2/rS1a/BKZn2wtwoKM42L24FQRSlC8k303dFjf24TBqNprMJBeChybACqAu6xnHRTh5tc5fQucZ4zAmxrhnt7aqzP9Opw8j/GtGjK0/zu/6tI=
+  file_glob: true
+  file: build/*.pdf
+  skip_cleanup: true
+git:
+    depth: false
+    quiet: true
